@@ -2,22 +2,10 @@ package com.efebudak.notificationsamples
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import kotlinx.android.synthetic.main.activity_main.*
-
-private const val CHANNEL_NAME = "Sample Channel Name"
-private const val CHANNEL_DESCRIPTION = "Sample Channel Description"
-private const val CHANNEL_ID = "Channel Id (but as String)"
-
-private const val BASIC_NOTIFICATION_ID = 11
-private const val NOTIFICATION_WITH_ACTION_ID = 12
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,32 +15,11 @@ class MainActivity : AppCompatActivity() {
 
         createNotificationChannel()
 
-        buttonBasic.setOnClickListener {
-            val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Basic Notification Title")
-                .setContentText("Basic Notification Text")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-            NotificationManagerCompat.from(this).notify(BASIC_NOTIFICATION_ID, builder.build())
-        }
-
-        buttonWithAction.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-            val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-            val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Notification with Action Title")
-                .setContentText("Notification with Action Text")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
-
-            NotificationManagerCompat.from(this)
-                .notify(NOTIFICATION_WITH_ACTION_ID, builder.build())
-        }
+        notifyNotification(
+            this,
+            INTERACTIVE_NOTIFICATION_ID,
+            createInteractiveNotification(this, 0)
+        )
     }
 
     private fun createNotificationChannel() {
