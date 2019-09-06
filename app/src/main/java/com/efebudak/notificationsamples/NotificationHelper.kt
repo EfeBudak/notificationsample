@@ -1,6 +1,7 @@
 package com.efebudak.notificationsamples
 
 import android.app.Notification
+import android.app.NotificationManager
 import android.content.Context
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -22,6 +23,12 @@ fun createInteractiveNotification(context: Context, count: Int): Notification =
             InteractiveNotificationBroadcastReceiver.newPendingIntent(context)
         )
         .build()
+
+fun cancelAllNotifications(context: Context) {
+    val notificationManager: NotificationManager =
+        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    notificationManager.cancelAll()
+}
 
 fun notifyNotification(context: Context, notificationId: Int, notification: Notification) =
     NotificationManagerCompat.from(context).notify(notificationId, notification)

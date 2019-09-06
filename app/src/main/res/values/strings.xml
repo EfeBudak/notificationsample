@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NotificationSamples</string>
+    <string name="button_interactive_notification">Show interactive notification</string>
+    <string name="button_cancel_all">Cancel All Notifications</string>
 </resources>

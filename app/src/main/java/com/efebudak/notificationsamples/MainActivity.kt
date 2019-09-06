@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,11 +16,16 @@ class MainActivity : AppCompatActivity() {
 
         createNotificationChannel()
 
-        notifyNotification(
-            this,
-            INTERACTIVE_NOTIFICATION_ID,
-            createInteractiveNotification(this, 0)
-        )
+        buttonInteractiveNotification.setOnClickListener {
+            notifyNotification(
+                this,
+                INTERACTIVE_NOTIFICATION_ID,
+                createInteractiveNotification(this, 0)
+            )
+        }
+
+        buttonCancelAllNotifications.setOnClickListener { cancelAllNotifications(this) }
+
     }
 
     private fun createNotificationChannel() {
