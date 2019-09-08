@@ -13,7 +13,7 @@ const val CHANNEL_ID = "Channel Id (but as String)"
 const val INTERACTIVE_NOTIFICATION_ID = 13
 fun createInteractiveNotification(context: Context, count: Int): Notification =
     NotificationCompat.Builder(context, CHANNEL_ID)
-        .setSmallIcon(R.drawable.ic_launcher_foreground)
+        .setSmallIcon(R.drawable.ic_notification_sample)
         .setContentTitle("Interactive Notification Title")
         .setContentText("Interactive Notification Text Count: $count")
         .setContentIntent(InteractiveNotificationBroadcastReceiver.newPendingIntent(context))
