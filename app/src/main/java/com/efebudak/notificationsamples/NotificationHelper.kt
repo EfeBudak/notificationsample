@@ -18,7 +18,7 @@ fun createInteractiveNotification(context: Context, count: Int): Notification =
         .setContentText("Interactive Notification Text Count: $count")
         .setContentIntent(InteractiveNotificationBroadcastReceiver.newPendingIntent(context))
         .addAction(
-            R.drawable.ic_launcher_foreground,
+            R.drawable.ic_launcher_sample_foreground,
             "Increment",
             InteractiveNotificationBroadcastReceiver.newPendingIntent(context)
         )
